@@ -15,7 +15,6 @@ public class TemperatureSeriesAnalysis {
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
         this.tsa = temperatureSeries.clone();
         this.count = tsa.length;
-        checkForEmptiness();
         for (int i = 0; i < tsa.length; i++) {
             if (tsa[i] < LOWEST_POSSIBLE) {
                 throw new InputMismatchException("The temperature is too low.");

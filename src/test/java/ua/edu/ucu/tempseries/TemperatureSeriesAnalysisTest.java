@@ -424,10 +424,7 @@ public class TemperatureSeriesAnalysisTest {
 
     @Test
     public void testAddTempsWithNoInitialTemps() {
-        // Create an instance with an empty initial array
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(new double[0]);
-
-        // Add temperatures to an empty series
         int newCount = seriesAnalysis.addTemps(28.0, 29.0);
         assertEquals(2, newCount);
     }
