@@ -3,9 +3,9 @@ package ua.edu.ucu.apps.tempseries;
 import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysis {
+    private static final double LOWEST_POSSIBLE = -273.0;
     private double[] tsa;
     private int count;
-    private static final double LOWEST_POSSIBLE = -273.0;
 
     public TemperatureSeriesAnalysis() {
         this.tsa = null;
@@ -44,7 +44,7 @@ public class TemperatureSeriesAnalysis {
         double avrg = average();
         int size = tsa.length;
         double sum = 0;
-        for (int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             sum = sum + (tsa[i] - avrg)*(tsa[i] - avrg);
         }
         
@@ -55,7 +55,7 @@ public class TemperatureSeriesAnalysis {
         checkForEmptiness();
         int size = tsa.length;
         double res = Double.MAX_VALUE;
-        for (int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             if (tsa[i] < res) {
                 res = tsa[i];
             }
@@ -67,7 +67,7 @@ public class TemperatureSeriesAnalysis {
         checkForEmptiness();
         int size = tsa.length;
         double res = Double.MIN_VALUE;
-        for (int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             if (tsa[i] > res) {
                 res = tsa[i];
             }
@@ -79,7 +79,7 @@ public class TemperatureSeriesAnalysis {
         checkForEmptiness();
         int size = tsa.length;
         double res = tsa[0];
-        for (int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             if ((Math.abs(tsa[i]) < Math.abs(res)) || 
             (Math.abs(tsa[i]) == Math.abs(res) && tsa[i] > res)) {
                 res = tsa[i];
@@ -91,13 +91,13 @@ public class TemperatureSeriesAnalysis {
 
     public double findTempClosestToValue(double tempValue) {
         checkForEmptiness();
-        if (tempValue == 0){
+        if (tempValue == 0) {
             return findTempClosestToZero();
         }
         int size = tsa.length;
         double res = Double.MAX_VALUE;
         double element = 0;
-        for (int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             if (Math.abs(tempValue - tsa[i]) < res) {
                 res = Math.abs(tempValue - tsa[i]);
                 element = tsa[i];
@@ -121,16 +121,16 @@ public class TemperatureSeriesAnalysis {
         checkForEmptiness();
         int size = tsa.length;
         int j = 0;
-        for (int i = 0; i < size; i++){
-            if (tsa[i] >= lowerBound && tsa[i] <= upperBound){
+        for (int i = 0; i < size; i++) {
+            if (tsa[i] >= lowerBound && tsa[i] <= upperBound) {
                 j++;
             }
         }
 
         double[] arr = new double[j];
         int k = 0;
-        for (int i = 0; i < size; i++){
-            if (tsa[i] >= lowerBound && tsa[i] <= upperBound){
+        for (int i = 0; i < size; i++) {
+            if (tsa[i] >= lowerBound && tsa[i] <= upperBound) {
                 arr[k] = tsa[i];
                 k++;
             }
