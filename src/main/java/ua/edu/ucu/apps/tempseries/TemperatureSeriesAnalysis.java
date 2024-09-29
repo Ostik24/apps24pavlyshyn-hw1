@@ -80,8 +80,8 @@ public class TemperatureSeriesAnalysis {
         int size = tsa.length;
         double res = tsa[0];
         for (int i = 0; i < size; i++) {
-            if ((Math.abs(tsa[i]) < Math.abs(res)) || 
-            (Math.abs(tsa[i]) == Math.abs(res) && tsa[i] > res)) {
+            if ((Math.abs(tsa[i]) < Math.abs(res)) 
+            || (Math.abs(tsa[i]) == Math.abs(res) && tsa[i] > res)) {
                 res = tsa[i];
             }
         }
