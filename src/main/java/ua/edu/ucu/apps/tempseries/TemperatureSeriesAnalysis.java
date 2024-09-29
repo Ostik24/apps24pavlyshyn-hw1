@@ -13,8 +13,9 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        this.tsa = temperatureSeries;
+        this.tsa = temperatureSeries.clone();
         this.count = tsa.length;
+        checkForEmptiness();
         for (int i = 0; i < tsa.length; i++) {
             if (tsa[i] < LOWEST_POSSIBLE) {
                 throw new InputMismatchException("The temperature is too low.");
@@ -31,11 +32,11 @@ public class TemperatureSeriesAnalysis {
     public double average() {
         checkForEmptiness();
         int size = tsa.length;
-        int sum = 0; 
+        double sum = 0; 
         for (int i = 0; i < size; i++) {
             sum += tsa[i];
         }
-        double result = sum/size;
+        double result = sum / size;
         return result;
     }
 
@@ -143,18 +144,19 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double[] sortTemps() {
-        int n = tsa.length; 
+        double[] sortedTsa = tsa.clone();
+        int n = sortedTsa.length;
         for (int i = 1; i < n; ++i) { 
-            double key = tsa[i]; 
+            double key = sortedTsa[i]; 
             int j = i - 1; 
 
-            while (j >= 0 && tsa[j] > key) { 
-                tsa[j + 1] = tsa[j]; 
+            while (j >= 0 && sortedTsa[j] > key) { 
+                sortedTsa[j + 1] = sortedTsa[j]; 
                 j = j - 1; 
             } 
-            tsa[j + 1] = key; 
+            sortedTsa[j + 1] = key; 
         } 
-        return tsa;
+        return sortedTsa;
     }
 
     public TempSummaryStatistics summaryStatistics() {
@@ -185,6 +187,6 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double[] getTsa() {
-        return tsa;
+        return tsa.clone();
     }
 }
