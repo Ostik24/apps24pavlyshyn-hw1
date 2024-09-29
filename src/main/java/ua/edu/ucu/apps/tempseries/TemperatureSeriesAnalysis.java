@@ -14,14 +14,15 @@ public class TemperatureSeriesAnalysis {
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
         if (temperatureSeries == null || temperatureSeries.length == 0) {
-            this.tsa = new double[0]; // Initialize to an empty array
-            this.count = 0; // Set count to zero
+            this.tsa = new double[0];
+            this.count = 0;
         } else {
             this.tsa = temperatureSeries.clone();
             this.count = tsa.length;
             for (int i = 0; i < tsa.length; i++) {
                 if (tsa[i] < LOWEST_POSSIBLE) {
-                    throw new InputMismatchException("The temperature is too low.");
+                    throw new 
+                    InputMismatchException("The temperature is too low.");
                 }
             }
         }

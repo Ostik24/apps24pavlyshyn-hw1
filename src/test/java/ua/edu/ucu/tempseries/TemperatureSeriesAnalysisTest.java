@@ -95,7 +95,6 @@ public class TemperatureSeriesAnalysisTest {
        double[] temperatureSeries = {};
        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
 
-       // expect exception here
        seriesAnalysis.average();
    }
 
@@ -178,8 +177,8 @@ public class TemperatureSeriesAnalysisTest {
         double[] temperatureSeries = {-5.0, -1.0, 1.0, 2.0, 3.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         
-        double tempValue = 1.5; // Value we want to find the closest temperature to.
-        double expResult = 1.0; // Closest temperature to 1.5 is 1.0
+        double tempValue = 1.5;
+        double expResult = 1.0;
         double actualResult = seriesAnalysis.findTempClosestToValue(tempValue);
         
         assertEquals(expResult, actualResult, 0.00001);
@@ -190,8 +189,8 @@ public class TemperatureSeriesAnalysisTest {
         double[] temperatureSeries = {-5.0, -1.0, 1.0, 2.0, 3.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         
-        double tempValue = -3.0; // Value we want to find the closest temperature to.
-        double expResult = -5.0; // Closest temperature to -3.0 is -1.0
+        double tempValue = -3.0;
+        double expResult = -5.0;
         double actualResult = seriesAnalysis.findTempClosestToValue(tempValue);
         
         assertEquals(expResult, actualResult, 0.00001);
@@ -202,8 +201,8 @@ public class TemperatureSeriesAnalysisTest {
         double[] temperatureSeries = {-5.0, -1.0, 1.0, 2.0, 3.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         
-        double tempValue = 0.0; // Value we want to find the closest temperature to.
-        double expResult = 1.0; // Closest temperature to 0.0 is 1.0
+        double tempValue = 0.0;
+        double expResult = 1.0;
         double actualResult = seriesAnalysis.findTempClosestToValue(tempValue);
         
         assertEquals(expResult, actualResult, 0.00001);
@@ -214,8 +213,8 @@ public class TemperatureSeriesAnalysisTest {
         double[] temperatureSeries = {-1.0, -3.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         
-        double tempValue = -2.0; // Value we want to find the closest temperature to.
-        double expResult = -1.0; // Closest temperature to -2.0 is -1.0
+        double tempValue = -2.0;
+        double expResult = -1.0;
         double actualResult = seriesAnalysis.findTempClosestToValue(tempValue);
         
         assertEquals(expResult, actualResult, 0.00001);
@@ -305,9 +304,6 @@ public class TemperatureSeriesAnalysisTest {
         assertArrayEquals(seriesAnalysis.getTsa(), n.getTsa(), 0.000001);
     }
 
-
-    //s
-
     @Test
     public void testSortTemps() {
         double[] initialTemperatures = {32.5, 30.0, 28.5, 35.0, 31.5};
@@ -389,36 +385,26 @@ public class TemperatureSeriesAnalysisTest {
  
     @Test(expected = IllegalArgumentException.class) 
     public void testSummaryStatisticsWithEmptyArray() { 
-        // Given an empty temperature series 
         double[] temperatureSeries = {}; 
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries); 
- 
-        // Expect exception here 
         seriesAnalysis.summaryStatistics(); 
     }
 
-    //s
     @Test
     public void testAddTempsIncreasesSize() {
         double[] initialTemps = {30.0, 25.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(initialTemps);
 
         int newCount = seriesAnalysis.addTemps(28.0, 29.0);
-
-        // After adding 2 new temperatures, the total count should be 4
         assertEquals(4, newCount);
     }
 
     @Test
     public void testAddTempsResizesArray() {
-        // Create an initial array with limited size
         double[] initialTemps = {30.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(initialTemps);
 
-        // Add temperatures that will require resizing
         int newCount = seriesAnalysis.addTemps(28.0, 29.0, 32.0, 35.0);
-
-        // Ensure that the total count reflects the added temperatures
         assertEquals(5, newCount);
     }
 
