@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 public class TemperatureSeriesAnalysis {
     private double[] tsa;
     private int count;
+    private static final double LOWEST_POSSIBLE = -273.0;
 
     public TemperatureSeriesAnalysis() {
         this.tsa = null;
@@ -14,24 +15,24 @@ public class TemperatureSeriesAnalysis {
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
         this.tsa = temperatureSeries;
         this.count = tsa.length;
-        for (int i = 0; i < tsa.length; i++){
-            if (tsa[i] < -273) {
+        for (int i = 0; i < tsa.length; i++) {
+            if (tsa[i] < LOWEST_POSSIBLE) {
                 throw new InputMismatchException("The temperature is too low.");
             }
         }
     }
 
-    public void CheckForEmptiness(){
+    public void checkForEmptiness() {
         if (tsa == null || tsa.length == 0) {
             throw new IllegalArgumentException("The set is empty!");
         }
     }
 
     public double average() {
-        CheckForEmptiness();
+        checkForEmptiness();
         int size = tsa.length;
         int sum = 0; 
-        for (int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             sum += tsa[i];
         }
         double result = sum/size;
@@ -39,19 +40,19 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double deviation() {
-        CheckForEmptiness();
+        checkForEmptiness();
         double avrg = average();
         int size = tsa.length;
         double sum = 0;
         for (int i = 0; i < size; i++){
-            sum = sum + (Math.pow(tsa[i] - avrg, 2));
+            sum = sum + (tsa[i] - avrg)*(tsa[i] - avrg);
         }
         
         return Math.sqrt(sum/size);
     }
 
     public double min() {
-        CheckForEmptiness();
+        checkForEmptiness();
         int size = tsa.length;
         double res = Double.MAX_VALUE;
         for (int i = 0; i < size; i++){
@@ -63,7 +64,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double max() {
-        CheckForEmptiness();
+        checkForEmptiness();
         int size = tsa.length;
         double res = Double.MIN_VALUE;
         for (int i = 0; i < size; i++){
@@ -75,11 +76,12 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double findTempClosestToZero() {
-        CheckForEmptiness();
+        checkForEmptiness();
         int size = tsa.length;
         double res = tsa[0];
         for (int i = 0; i < size; i++){
-            if ((Math.abs(tsa[i]) < Math.abs(res)) || (Math.abs(tsa[i]) == Math.abs(res) && tsa[i] > res)) {
+            if ((Math.abs(tsa[i]) < Math.abs(res)) || 
+            (Math.abs(tsa[i]) == Math.abs(res) && tsa[i] > res)) {
                 res = tsa[i];
             }
         }
@@ -88,7 +90,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double findTempClosestToValue(double tempValue) {
-        CheckForEmptiness();
+        checkForEmptiness();
         if (tempValue == 0){
             return findTempClosestToZero();
         }
@@ -106,17 +108,17 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double[] findTempsLessThen(double tempValue) {
-        CheckForEmptiness();
+        checkForEmptiness();
         return findTempsInRange(-Double.MAX_VALUE, tempValue);
     }
 
     public double[] findTempsGreaterThen(double tempValue) {
-        CheckForEmptiness();
+        checkForEmptiness();
         return findTempsInRange(tempValue, Double.MAX_VALUE);
     }
 
     public double[] findTempsInRange(double lowerBound, double upperBound) {
-        CheckForEmptiness();
+        checkForEmptiness();
         int size = tsa.length;
         int j = 0;
         for (int i = 0; i < size; i++){
@@ -156,7 +158,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TempSummaryStatistics summaryStatistics() {
-        CheckForEmptiness(); 
+        checkForEmptiness(); 
         double avg = average(); 
         double dev = deviation(); 
         double min = min(); 
