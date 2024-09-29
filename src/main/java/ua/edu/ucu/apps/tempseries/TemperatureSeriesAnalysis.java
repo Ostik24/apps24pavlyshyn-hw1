@@ -158,7 +158,6 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TempSummaryStatistics summaryStatistics() {
-        checkForEmptiness(); 
         double avg = average(); 
         double dev = deviation(); 
         double min = min(); 

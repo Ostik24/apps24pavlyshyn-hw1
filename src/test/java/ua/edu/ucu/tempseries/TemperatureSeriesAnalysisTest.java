@@ -14,7 +14,7 @@ public class TemperatureSeriesAnalysisTest {
         double[] temperatures = {100.0, -300.0, 25.5};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatures);
         
-        seriesAnalysis.CheckForEmptiness();
+        seriesAnalysis.checkForEmptiness();
     }
 
     @Test
@@ -429,20 +429,13 @@ public class TemperatureSeriesAnalysisTest {
 
         // Add temperatures to an empty series
         int newCount = seriesAnalysis.addTemps(28.0, 29.0);
-
-        // Ensure that the count reflects the number of added temperatures
         assertEquals(2, newCount);
     }
 
     @Test
     public void testAddTempsWithSingleTemperature() {
-        // Create an instance with a single temperature
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(new double[]{20.0});
-
-        // Add a new temperature
         int newCount = seriesAnalysis.addTemps(22.0);
-
-        // Ensure that the count reflects the number of temperatures
         assertEquals(2, newCount);
     }
 
@@ -451,11 +444,9 @@ public class TemperatureSeriesAnalysisTest {
         double[] initialTemps = {30.0, 25.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(initialTemps);
 
-        // Add temperatures multiple times
         int countAfterFirstAdd = seriesAnalysis.addTemps(28.0, 29.0);
         int countAfterSecondAdd = seriesAnalysis.addTemps(32.0);
 
-        // Ensure that the count reflects the total number of temperatures
         assertEquals(4, countAfterFirstAdd);
         assertEquals(5, countAfterSecondAdd);
     }
