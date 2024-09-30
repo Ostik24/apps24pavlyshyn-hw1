@@ -1,7 +1,6 @@
 package ua.edu.ucu.apps.tempseries;
 
 public class TemperatureSeriesAnalysis {
-    private static final double LOWEST_POSSIBLE = -273.0;
     private double[] tsa;
     private int count;
 
