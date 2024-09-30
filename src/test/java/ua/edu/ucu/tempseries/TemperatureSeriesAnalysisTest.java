@@ -2,20 +2,11 @@ package ua.edu.ucu.tempseries;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import java.util.InputMismatchException;
 
 import ua.edu.ucu.apps.tempseries.TempSummaryStatistics;
 import ua.edu.ucu.apps.tempseries.TemperatureSeriesAnalysis;
 
 public class TemperatureSeriesAnalysisTest {
-
-    @Test(expected = InputMismatchException.class)
-    public void testTemperatureBelowAbsoluteZero() {
-        double[] temperatures = {100.0, -300.0, 25.5};
-        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatures);
-        
-        seriesAnalysis.checkForEmptiness();
-    }
 
     @Test
     public void test() {

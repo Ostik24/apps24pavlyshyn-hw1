@@ -1,7 +1,5 @@
 package ua.edu.ucu.apps.tempseries;
 
-import java.util.InputMismatchException;
-
 public class TemperatureSeriesAnalysis {
     private static final double LOWEST_POSSIBLE = -273.0;
     private double[] tsa;
@@ -19,12 +17,6 @@ public class TemperatureSeriesAnalysis {
         } else {
             this.tsa = temperatureSeries.clone();
             this.count = tsa.length;
-            for (int i = 0; i < tsa.length; i++) {
-                if (tsa[i] < LOWEST_POSSIBLE) {
-                    throw new 
-                    InputMismatchException("The temperature is too low.");
-                }
-            }
         }
     }
 
